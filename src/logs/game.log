@@ -1,0 +1,282 @@
+мар. 27, 2025 12:46:41 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 12:48:02 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 12:51:01 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 12:51:08 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 12:54:43 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 12:56:09 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 12:57:52 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 1:01:23 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:22:10 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:22:10 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:22:10 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:22:10 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:22:10 PM buildings.ForgeTest setUp
+INFO: Сетап установлен
+мар. 27, 2025 5:22:10 PM buildings.ForgeTest testHandleChoiceBuyBallista
+INFO: тест начат
+мар. 27, 2025 5:23:23 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:23:23 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:23:23 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:23:23 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:23:23 PM buildings.ForgeTest setUp
+INFO: Сетап установлен
+мар. 27, 2025 5:23:23 PM buildings.ForgeTest testHandleChoiceBuyBallista
+INFO: тест начат
+мар. 27, 2025 5:23:23 PM buildings.InfernoTest testHandleChoiceBuySoldier
+INFO: Тест начат
+мар. 27, 2025 5:23:23 PM buildings.InfernoTest testHandleChoiceBuySoldier
+INFO: Тест пройден
+мар. 27, 2025 5:23:23 PM buildings.InfernoTest testHandleChoiceInvalidOption
+INFO: Тест начат
+мар. 27, 2025 5:23:23 PM buildings.InfernoTest testHandleChoiceInvalidOption
+INFO: Тест пройден
+мар. 27, 2025 5:23:23 PM buildings.InfernoTest testHandleChoiceBuyGhost
+INFO: Тест начат
+мар. 27, 2025 5:23:23 PM buildings.InfernoTest testHandleChoiceBuyGhost
+INFO: Тест пройден
+мар. 27, 2025 5:23:23 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:23 PM game.players.ComputerPlayer buyMapObjects
+WARNING: Покупка героев
+мар. 27, 2025 5:23:23 PM game.players.ComputerPlayer moveToOppositeCastle
+WARNING: Движение к замку противника
+мар. 27, 2025 5:23:23 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:23 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:23 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:23 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:23 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:47 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:23:47 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:23:47 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:23:47 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 27, 2025 5:23:47 PM buildings.ForgeTest setUp
+INFO: Сетап установлен
+мар. 27, 2025 5:23:47 PM buildings.ForgeTest testHandleChoiceBuyBallista
+INFO: тест начат
+мар. 27, 2025 5:23:47 PM buildings.ForgeTest testHandleChoiceBuyBallista
+INFO: тест пройден
+мар. 27, 2025 5:23:47 PM buildings.InfernoTest testHandleChoiceBuySoldier
+INFO: Тест начат
+мар. 27, 2025 5:23:47 PM buildings.InfernoTest testHandleChoiceBuySoldier
+INFO: Тест пройден
+мар. 27, 2025 5:23:47 PM buildings.InfernoTest testHandleChoiceInvalidOption
+INFO: Тест начат
+мар. 27, 2025 5:23:47 PM buildings.InfernoTest testHandleChoiceInvalidOption
+INFO: Тест пройден
+мар. 27, 2025 5:23:47 PM buildings.InfernoTest testHandleChoiceBuyGhost
+INFO: Тест начат
+мар. 27, 2025 5:23:47 PM buildings.InfernoTest testHandleChoiceBuyGhost
+INFO: Тест пройден
+мар. 27, 2025 5:23:47 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:47 PM game.players.ComputerPlayer buyMapObjects
+WARNING: Покупка героев
+мар. 27, 2025 5:23:47 PM game.players.ComputerPlayer moveToOppositeCastle
+WARNING: Движение к замку противника
+мар. 27, 2025 5:23:47 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:47 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:47 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:47 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 27, 2025 5:23:47 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 28, 2025 11:17:13 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 11:17:13 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 11:17:13 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 11:17:13 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 11:17:13 AM buildings.ForgeTest setUp
+INFO: Сетап установлен
+мар. 28, 2025 11:17:13 AM buildings.ForgeTest testHandleChoiceBuyBallista
+INFO: тест начат
+мар. 28, 2025 11:17:13 AM buildings.ForgeTest testHandleChoiceBuyBallista
+INFO: тест пройден
+мар. 28, 2025 11:17:13 AM buildings.ForgeTest tearDown
+INFO: тестыbuildings.ForgeTest пройдены
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest testHandleChoiceBuySoldier
+INFO: Тест начат
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest testHandleChoiceBuySoldier
+INFO: Тест пройден
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest tearDown
+INFO: тестыbuildings.InfernoTest пройдены
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest testHandleChoiceInvalidOption
+INFO: Тест начат
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest testHandleChoiceInvalidOption
+INFO: Тест пройден
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest tearDown
+INFO: тестыbuildings.InfernoTest пройдены
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest testHandleChoiceBuyGhost
+INFO: Тест начат
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest testHandleChoiceBuyGhost
+INFO: Тест пройден
+мар. 28, 2025 11:17:13 AM buildings.InfernoTest tearDown
+INFO: тестыbuildings.InfernoTest пройдены
+мар. 28, 2025 11:17:13 AM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 28, 2025 11:17:13 AM game.players.ComputerPlayer buyMapObjects
+WARNING: Покупка героев
+мар. 28, 2025 11:17:13 AM game.players.ComputerPlayer moveToOppositeCastle
+WARNING: Движение к замку противника
+мар. 28, 2025 11:17:13 AM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 28, 2025 11:17:13 AM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 28, 2025 11:17:13 AM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 28, 2025 11:17:13 AM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 28, 2025 11:17:13 AM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 28, 2025 1:13:15 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 1:53:00 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 2:51:53 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 2:53:07 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 2:54:04 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 8:24:34 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 8:25:04 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 8:41:38 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 8:42:35 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:17:36 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:31:46 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:33:31 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:36:17 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:37:42 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:38:25 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:40:33 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:40:57 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:41:55 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:43:29 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:45:09 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:45:41 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 28, 2025 10:53:05 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:40:00 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:41:56 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:46:13 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:50:58 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 9:05:09 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 10:12:07 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 10:13:20 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 10:14:50 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:01:17 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:10:50 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:11:27 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:11:58 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:17:18 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:22:53 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:32:11 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:34:21 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:35:00 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:35:38 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:51:01 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:51:27 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 11:51:47 AM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 12:58:12 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:01:53 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:02:39 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:21:45 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:38:33 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:38:33 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:38:33 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:38:33 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 29, 2025 1:38:34 PM game.players.ComputerPlayer buyMapObjects
+WARNING: Покупка героев
+мар. 29, 2025 1:38:34 PM game.players.ComputerPlayer moveToOppositeCastle
+WARNING: Движение к замку противника
+мар. 29, 2025 1:38:34 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 29, 2025 1:38:34 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 29, 2025 1:38:34 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 29, 2025 1:38:34 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 29, 2025 1:38:34 PM game.players.ComputerPlayer attackNeighbors
+WARNING: Атака соседей
+мар. 29, 2025 1:41:14 PM game.Game initGame
+INFO: Игра инициализирована
+мар. 29, 2025 1:43:51 PM game.Game initGame
+INFO: Игра инициализирована
+апр. 12, 2025 4:15:37 PM game.Game initGame
+INFO: Игра инициализирована
