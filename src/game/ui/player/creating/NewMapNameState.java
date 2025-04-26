@@ -1,11 +1,9 @@
-package game.ui.player;
+package game.ui.player.creating;
 
-import game.Game;
-import game.gamemap.Cell;
-import game.gamemap.MainMap;
-import game.gamemap.MapLoader;
 import game.ui.CustomLogger;
 import game.ui.InputScanner;
+import game.ui.player.MenuContext;
+import game.ui.player.MenuState;
 
 import java.io.Serializable;
 import java.util.Scanner;

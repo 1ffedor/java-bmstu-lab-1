@@ -1,5 +1,6 @@
 package game.gamemap;
 
+import game.gamemap.cells.Cell;
 import game.objects.MapObject;
 import game.players.Player;
 
@@ -34,7 +35,7 @@ public class MapManager implements Serializable {
         // создадим новые связи
         cellToObject.put(newCell, mapObject);
         mapObjectToCell.put(mapObject, newCell);
-        newCell.setMapObjectSymbol(mapObject.getSymbol());
+        newCell.setMapObjectColor(mapObject.getSymbol());
     }
 
     public void removeMapObject(MapObject mapObject) {

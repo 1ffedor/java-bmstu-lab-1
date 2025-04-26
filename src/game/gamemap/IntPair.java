@@ -1,3 +1,5 @@
 package game.gamemap;
 
-public record IntPair(int row, int col) {}
+import java.io.Serializable;
+
+public record IntPair(int row, int col) implements Serializable {}

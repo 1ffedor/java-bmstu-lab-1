@@ -1,13 +1,14 @@
 package game.players;
 
 import game.buildings.Building;
+import game.gamemap.IntPair;
 import game.objects.*;
 import game.objects.heroes.Gollum;
 import game.objects.heroes.Knight;
 import game.objects.units.Ghost;
 import game.objects.units.Soldier;
 import game.ui.CustomLogger;
-import game.gamemap.Cell;
+import game.gamemap.cells.Cell;
 import game.gamemap.MainMap;
 import game.objects.stationary.Castle;
 import game.ui.player.MenuContext;

@@ -1,5 +1,7 @@
-package game.gamemap;
+package game.gamemap.cells;
 
+import game.gamemap.IntPair;
+import game.gamemap.MainMap;
 import game.players.Player;
 
 import java.io.Serializable;
@@ -8,37 +10,44 @@ import java.util.Objects;
 
 public class Cell implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String type;  // тип клетки
-    public static final String EMPTY = "⬜\uFE0F";
-    public static final String ROAD = "\uD83D\uDFE5";
+    private char symbol;  // тип клетки
+    private String color;
+    public static final char EMPTY = '#';
+    public static final String EMPTY_COLOR = "⬜\uFE0F";
+    public static final char ROAD = '+';
     public static final String OBSTACLE = "*";
     private int row;
     private int col;
-    private String mapObjectSymbol;
+    private String mapObjectColor;
     public MainMap map;
     public Player playersZone;
+    public int penalty;
+    public String description = null;
 
-    public Cell(String type, int row, int col) {
+    public Cell(int row, int col) {
         // конструктор клетки
-        this.type = type;
         this.row = row;
         this.col = col;
-        this.mapObjectSymbol = null;
+        this.mapObjectColor = null;
     }
 
-    public void setMapObjectSymbol(String mapObjectSymbol) {
-        this.mapObjectSymbol = mapObjectSymbol;
+    public void setMapObjectColor(String mapObjectColor) {
+        this.mapObjectColor = mapObjectColor;
     }
 
     public void removeMapObjectSymbol() {
-        this.mapObjectSymbol = null;
+        this.mapObjectColor = null;
     }
 
-    public String getSymbol() {
-        if (mapObjectSymbol != null) {
-            return mapObjectSymbol;
+    public char getSymbol() {
+        return symbol;
+    }
+
+    public String getColor() {
+        if (mapObjectColor != null) {
+            return mapObjectColor;
         }
-        return type;
+        return color;
     }
 
     public int getRow() {
@@ -49,36 +58,55 @@ public class Cell implements Serializable {
         return col;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public void setPlayersZone(Player playersZone) {
         // установить клетку зоной какого0либо игрока
         this.playersZone = playersZone;
-        this.type = playersZone.getZoneSymbol();
+        this.color = playersZone.getZoneSymbol();
     }
 
-    public int getPenalty(Player player) {
+    public void setPenalty(int penalty) {
+        this.penalty = penalty;
+    }
+
+    public int getPenalty() {return penalty;}
+
+    public int getPenaltyForPlayer(Player player) {
         // узнать пенальти для конкретного игрока
-        if (Objects.equals(type, ROAD)) {
+        penalty = 1;
+        if (Objects.equals(symbol, ROAD)) {
             // дорога
             return 2;
         }
-        if (Objects.equals(type, EMPTY)) {
+        if (Objects.equals(symbol, EMPTY)) {
             // свободная территория
             return 4;
         }
         if (!playersZone.equals(player)) {
             // чужая территория
-            return 4;
+            return penalty + 4;
         }
-        return 1;
+        return penalty;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setSymbol(char symbol) {
+        this.symbol = symbol;
     }
 
-    public String getType() {
-        return type;
+    public void setColor(String color) {
+        this.color = color;
     }
+
+//    public char getSymbol() {
+//        return symbol;
+//    }
 
     public String getStringPosition() {
         // получить позицию строкой в человеческом виде

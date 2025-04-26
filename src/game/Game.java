@@ -26,6 +26,9 @@ public class Game implements Serializable {
     public static final int MAP_HEIGHT = 10;
     private MenuContext context;
 
+    private final long TURN_TIME_LIMIT_MS = 60_000; // 1 минута на ход
+    private transient Thread turnTimerThread;
+
     public Game(MainMap map, MenuContext context) {
         this.map = map;
         this.context = context;

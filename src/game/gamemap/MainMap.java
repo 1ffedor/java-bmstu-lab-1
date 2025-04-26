@@ -1,5 +1,6 @@
 package game.gamemap;
 
+import game.gamemap.cells.Cell;
 import game.objects.Attacking;
 import game.objects.MapObject;
 import game.objects.Moving;
@@ -21,6 +22,9 @@ public class MainMap implements Serializable {
     private int width;
     private int height;
 
+    public IntPair computerCastlePosition = null;
+
+
     public MainMap(int width, int height) {
         this.width = width;
         this.height = height;
@@ -28,9 +32,15 @@ public class MainMap implements Serializable {
         fillCells();
     }
 
+    public void setComputerCastlePosition(IntPair computerCastlePosition) {
+        this.computerCastlePosition = computerCastlePosition;
+    }
+
+    public IntPair getComputerCastlePosition() {return computerCastlePosition;}
+
     private void fillCells() {
         fillEmptyCells();
-        fillRoadCells();
+//        fillRoadCells();
     }
 
     private void fillEmptyCells() {
@@ -39,22 +49,10 @@ public class MainMap implements Serializable {
         for (int y = 0; y < height; y++) {
             ArrayList<Cell> row = new ArrayList<>();
             for (int col = 0; col < width; col++) {
-                Cell cell = new Cell(Cell.EMPTY, y, col);
+                Cell cell = new Cell(y, col);
                 row.add(cell);
             }
             cells.add(row);
-        }
-    }
-
-    public void fillRoadCells() {
-        // заполнить клетки дороги
-        // идём по клеткам и если клетка диагональня меняем ее тип на дорогу
-        for (ArrayList<Cell> row : cells) {
-            for (Cell cell : row) {
-                if (cell.getCol() == cell.getRow()) {
-                    cell.setType(Cell.ROAD);
-                }
-            }
         }
     }
 
@@ -69,7 +67,7 @@ public class MainMap implements Serializable {
         for (int row = 0; row < 5; row++) {
             for (int col = 0; col < 5; col++) {
                 Cell cell = this.getCell(row, col);
-                if (!Objects.equals(cell.getType(), Cell.ROAD)) {
+                if (Objects.equals(cell.getSymbol(), Cell.EMPTY)) {
                     cell.setPlayersZone(firstPlayer);
                     playerCells.get(firstPlayer).add(cell);
                 }
@@ -82,7 +80,7 @@ public class MainMap implements Serializable {
         for (int row = height - 1; row >= height - 5; row--) {
             for (int col = width - 1; col >= width - 5; col--) {
                 Cell cell = this.getCell(row, col);
-                if (!Objects.equals(cell.getType(), Cell.ROAD)) {
+                if (Objects.equals(cell.getSymbol(), Cell.EMPTY)) {
                     cell.setPlayersZone(secondPlayer);
                     playerCells.get(secondPlayer).add(cell);
                 }
@@ -149,7 +147,7 @@ public class MainMap implements Serializable {
         // разместить объект на карте
         // получаем клетку
         Cell cell = getCell(row, col);
-        cell.setMapObjectSymbol(mapObject.getSymbol());
+        cell.setMapObjectColor(mapObject.getSymbol());
         mapManager.setMapObjectToCell(mapObject, cell);  // добавим объект на карту
     }
 
@@ -229,12 +227,12 @@ public class MainMap implements Serializable {
     }
 
     public void handleEmptyCell(MapObject movable, Cell newCell) {
-        if (!((Moving) movable).haveEnergyToMove(newCell.getPenalty(movable.getPlayer()))) {
+        if (!((Moving) movable).haveEnergyToMove(newCell.getPenaltyForPlayer(movable.getPlayer()))) {
             CustomLogger.warn("Не хватило энергии для перемещения.");
             movable.getPlayer().postAttack();
             return;
         }
-        ((Moving) movable).changeEnergy(newCell.getPenalty(movable.getPlayer()));
+        ((Moving) movable).changeEnergy(newCell.getPenaltyForPlayer(movable.getPlayer()));
         mapManager.setMapObjectToCell(movable, newCell);
         CustomLogger.outln(String.format("Перемещение '%s' в клетку: %s", (movable).getName(), newCell.getStringPosition()));
     }
@@ -265,7 +263,7 @@ public class MainMap implements Serializable {
             // клетка не существует
             return false;
         }
-        if (Objects.equals(cell.getType(), Cell.OBSTACLE)) {
+        if (cell.getPenalty() >= 100) {
             return false;
         }
         return true;
@@ -277,7 +275,7 @@ public class MainMap implements Serializable {
             ArrayList<Cell> row = cells.get(x);
             for (int y = 0; y < height; y++) {
                 Cell cell = row.get(y);
-                CustomLogger.out(cell.getSymbol() + " ");
+                CustomLogger.out(cell.getColor() + " ");
             }
             CustomLogger.outln("");
         }

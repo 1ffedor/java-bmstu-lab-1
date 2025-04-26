@@ -1,5 +1,8 @@
 package game.gamemap;
 
+import game.gamemap.cells.Cell;
+import game.gamemap.cells.CellType;
+import game.gamemap.cells.CellTypeLoader;
 import game.ui.CustomLogger;
 
 import java.io.*;
@@ -44,7 +47,8 @@ public class MapLoader {
             }
             int height = lines.size();
             int width = lines.get(0).length();
-            MainMap map = new MainMap(width, height);
+            MainMap map = new MainMap(width, height);  // грузим карту
+            List<CellType> cellTypes = CellTypeLoader.loadCellTypesFromXml();  // все типы клеток
             for (int y = 0; y < height; y++) {
                 String currentLine = lines.get(y);
                 if (currentLine.length() != width) {
@@ -54,13 +58,24 @@ public class MapLoader {
                 for (int x = 0; x < width; x++) {
                     char symbol = currentLine.charAt(x);
                     Cell cell = map.getCell(y, x);
-                    switch (symbol) {
-                        case '#':
-                            cell.setType(Cell.EMPTY);
-                            break;
-                        case '+':
-                            cell.setType(Cell.ROAD);
-                            break;
+                    CellType cellType = cellTypes.stream()
+                            .filter(c -> c.getSymbol() == symbol)
+                            .findFirst()
+                            .orElse(null);
+                    if (cellType == null) {
+                        cell.setSymbol('#');
+                        cell.setColor(Cell.EMPTY_COLOR);
+                    }
+                    else {
+                        cell.setSymbol(cellType.getSymbol());
+                        cell.setColor(cellType.getColor());
+                        cell.setPenalty(cellType.getPenalty());
+                        if (cellType.isCastle()) {
+                            map.setComputerCastlePosition(new IntPair(y, x));
+                        }
+                        if (cellType.getDescription() != null) {
+                            cell.setDescription(cellType.getDescription());
+                        }
                     }
                 }
             }
@@ -69,6 +84,8 @@ public class MapLoader {
         } catch (IOException e) {
             System.err.println("Ошибка при чтении файла карты: " + e.getMessage());
             return null;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -79,14 +96,7 @@ public class MapLoader {
                 StringBuilder line = new StringBuilder();
                 for (int x = 0; x < map.getWidth(); x++) {
                     Cell cell = map.getCell(y, x);
-                    switch (cell.getType()) {
-                        case Cell.ROAD:
-                            line.append('+');
-                            break;
-                        case Cell.EMPTY:
-                            line.append('#');
-                            break;
-                    }
+                    line.append(cell.getSymbol());
                 }
                 writer.write(line.toString());
                 writer.newLine();

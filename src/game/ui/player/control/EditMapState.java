@@ -1,18 +1,21 @@
 package game.ui.player.control;
 
 import game.Game;
-import game.gamemap.Cell;
+import game.gamemap.cells.Cell;
 import game.gamemap.MainMap;
 import game.gamemap.MapLoader;
-import game.players.Player;
+import game.gamemap.cells.CellType;
+import game.gamemap.cells.CellTypeLoader;
 import game.ui.InputScanner;
 import game.ui.CustomLogger;
 import game.ui.player.MenuContext;
 import game.ui.player.MenuState;
-import game.ui.player.manage.ManageMapsState;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
 
 public class EditMapState implements MenuState, Serializable {
     private MenuContext context;
@@ -26,7 +29,16 @@ public class EditMapState implements MenuState, Serializable {
         CustomLogger.outln(String.format("Основное меню -> Управление картами -> %s -> Редактирование карты",
                 context.get("mapName")));
         MapLoader.displayMap(context.getString("mapName"));
-        CustomLogger.outln("Введите новые символы карты построчно:");
+        try {
+            List<CellType> cellTypes = CellTypeLoader.loadCellTypesFromXml();  // все типы клеток
+            String symbolsDescription = cellTypes.stream()
+                    .map(c -> String.format("%c - %s", c.getSymbol(),
+                            c.getDescription() != null ? c.getDescription() : "нет описания"))
+                    .collect(Collectors.joining("\n"));
+            CustomLogger.outln(String.format("Введите новые символы карты построчно:\n%s", symbolsDescription));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -46,17 +58,7 @@ public class EditMapState implements MenuState, Serializable {
             for (int x = 0; x < Game.MAP_WIDTH; x++) {
                 char symbol = line.charAt(x);
                 Cell cell = map.getCell(y, x);
-                switch (symbol) {
-                    case '#':
-                        cell.setType(Cell.EMPTY);
-                        break;
-                    case '+':
-                        cell.setType(Cell.ROAD);
-                        break;
-                    default:
-                        cell.setType(Cell.EMPTY);
-                        break;
-                }
+                cell.setSymbol(symbol);
             }
         }
         MapLoader.saveMap(context.getString("mapName"), map);

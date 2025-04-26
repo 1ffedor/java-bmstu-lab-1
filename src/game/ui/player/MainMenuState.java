@@ -7,6 +7,7 @@ import game.ui.InputScanner;
 import game.ui.CustomLogger;
 import game.ui.player.manage.ManageArmyState;
 import game.ui.player.manage.ManageBuildingsState;
+import game.ui.player.manage.ManageCellsTypesState;
 import game.ui.player.manage.ManageMapsState;
 import game.ui.player.store.BuildingsStoreState;
 
@@ -32,6 +33,7 @@ public class MainMenuState implements MenuState, Serializable {
         CustomLogger.outln("3: Купить здание");
         CustomLogger.outln("4: Сохранить игру");
         CustomLogger.outln("5: Управление картами");
+        CustomLogger.outln("6: Редактор клеток");
     }
 
     @Override
@@ -42,28 +44,14 @@ public class MainMenuState implements MenuState, Serializable {
         if (scanner.hasNextInt()) {
             int choice = scanner.nextInt();
             switch (choice) {
-                case 0:
-                    context.finish();
-                    break;
-                case 1:
-                    context.setState(new ManageArmyState(context, player));
-                    break;
-                case 2:
-                    context.setState(new ManageBuildingsState(context, player));
-                    break;
-                case 3:
-                    context.setState(new BuildingsStoreState(context, player));
-                    break;
-                case 4:
-                    Game game = context.get(Game.class);
-                    GameLoader.saveGame(context.get(Game.class), player.getName() + ".sav");
-                    break;
-                case 5:
-                    // редактор карт
-                    context.setState(new ManageMapsState(context));
-                    break;
-                default:
-                    CustomLogger.warn("Неверный выбор. Попробуйте снова.");
+                case 0 -> context.finish();
+                case 1 -> context.setState(new ManageArmyState(context, player));
+                case 2 -> context.setState(new ManageBuildingsState(context, player));
+                case 3 -> context.setState(new BuildingsStoreState(context, player));
+                case 4 -> GameLoader.saveGame(context.get(Game.class), player.getName() + ".sav");
+                case 5 -> context.setState(new ManageMapsState(context));
+                case 6 ->  context.setState(new ManageCellsTypesState(context));
+                default -> CustomLogger.warn("Неверный выбор. Попробуйте снова.");
             }
         }
         else {

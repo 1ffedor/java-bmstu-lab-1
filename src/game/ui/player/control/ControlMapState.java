@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class ControlMapState implements MenuState, Serializable {
     private MenuContext context;
-    private Player player;
 
     public ControlMapState(MenuContext context) {
         this.context = context;

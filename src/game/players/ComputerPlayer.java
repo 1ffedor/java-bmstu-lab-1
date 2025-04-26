@@ -33,6 +33,10 @@ public class ComputerPlayer extends Player {
     @Override
     protected void initCastle() {
         castle = new PlayerCastle(this);
+        if (map.getComputerCastlePosition() != null) {
+            map.setMapObject(castle, map.getComputerCastlePosition().row(), map.getComputerCastlePosition().col());
+            return;
+        }
         map.setMapObject(castle, MAP_WIDTH - 1, MAP_HEIGHT - 1);
     }
 

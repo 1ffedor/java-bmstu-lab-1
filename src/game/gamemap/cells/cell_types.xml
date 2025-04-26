@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CellTypes>
+    <CellType color="⬜️" is_castle="false" penalty="10" symbol="#">
+        <description>Нейтральная зона</description>
+    </CellType>
+    <CellType color="&#128997;" is_castle="false" penalty="0" symbol="+">
+        <description>Дорога</description>
+    </CellType>
+    <CellType color="&#127968;" is_castle="true" penalty="0" symbol="$"/>
+    <CellType color="" is_castle="false" penalty="0" symbol="^">
+        <description>Новый тип клетки</description>
+    </CellType>
+</CellTypes>

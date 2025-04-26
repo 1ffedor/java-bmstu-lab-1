@@ -1,11 +1,11 @@
 package game.ui.player;
 
 import game.Game;
-import game.GameLoader;
 import game.gamemap.MainMap;
 import game.gamemap.MapLoader;
 import game.ui.CustomLogger;
 import game.ui.InputScanner;
+import game.ui.player.creating.NewMapNameState;
 
 import java.io.Serializable;
 import java.util.Scanner;
