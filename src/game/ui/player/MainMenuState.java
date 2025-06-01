@@ -26,6 +26,7 @@ public class MainMenuState implements MenuState, Serializable {
     @Override
     public void display() {
         player.map.display();
+        CustomLogger.outln("Осталось времени: " + (player.getRemainingTime()/1000) + " сек");
         CustomLogger.outln(String.format("Основное меню | Баланс: %s", player.getBalanceString()));
         CustomLogger.outln("0: Завершить ход");
         CustomLogger.outln("1: Управлять армией");
@@ -34,6 +35,7 @@ public class MainMenuState implements MenuState, Serializable {
         CustomLogger.outln("4: Сохранить игру");
         CustomLogger.outln("5: Управление картами");
         CustomLogger.outln("6: Редактор клеток");
+        CustomLogger.outln("7: Здания с услугами");
     }
 
     @Override
@@ -51,6 +53,7 @@ public class MainMenuState implements MenuState, Serializable {
                 case 4 -> GameLoader.saveGame(context.get(Game.class), player.getName() + ".sav");
                 case 5 -> context.setState(new ManageMapsState(context));
                 case 6 ->  context.setState(new ManageCellsTypesState(context));
+                case 7 -> context.setState(new ShopStoreState(context, player));
                 default -> CustomLogger.warn("Неверный выбор. Попробуйте снова.");
             }
         }

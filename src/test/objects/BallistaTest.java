@@ -42,7 +42,6 @@ public class BallistaTest {
     @Test
     void testCanAttackCastle() {
         LOGGER.log(Level.INFO, "Тест начат");
-
         assertFalse(ballista.canAttackCastle(), "Баллиста не должна мочь атаковать замок");
     }
 

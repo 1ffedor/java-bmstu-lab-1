@@ -1,6 +1,7 @@
 package game.players;
 
 import game.Game;
+import game.GameLoader;
 import game.buildings.Tavern;
 import game.gamemap.IntPair;
 import game.objects.Attacking;
@@ -11,6 +12,8 @@ import game.objects.stationary.PlayerCastle;
 import game.gamemap.MainMap;
 import game.objects.units.Ghost;
 import game.objects.units.Soldier;
+import game.ui.CustomLogger;
+import game.ui.player.MainMenuState;
 import utils.LogConfig;
 
 import java.util.logging.Level;
@@ -24,6 +27,8 @@ public class ComputerPlayer extends Player {
             LogConfig.getLogger(Game.class, "computerPlayer", Level.WARNING);  // инит логера
 
     public String zoneSymbol = "\uD83D\uDFE8";
+    private volatile boolean actionInterrupted = false;
+    private long turnStartTime;
 
     public ComputerPlayer(String name, int balance, MainMap map) {
         super(name, balance,  1, map);
@@ -52,17 +57,64 @@ public class ComputerPlayer extends Player {
 
     @Override
     public void action() {
-        // действие компьютера
-        // есть возможность атаковать - атакует
-        // всё время перемещается к замку
-        // герой сидит в замке до последнего
-        LOGGER.log(Level.WARNING, "Начало хода");
-        if (!isHaveBuilding(new Tavern())) {
-            buyBuilding(new Tavern());
+        actionInterrupted = false;
+        turnStartTime = System.currentTimeMillis();
+
+        try {
+            LOGGER.log(Level.WARNING, "Начало хода");
+            if (!isHaveBuilding(new Tavern())) {
+                buyBuilding(new Tavern());
+            }
+            buyMapObjects();  // покупка героев до талого
+            attackNeighbors();  // атакуем соседей
+            moveToOppositeCastle();  // перемещаемся к замку врага
+
+            if (context.isInterrupted()) {
+                CustomLogger.outln("Ход завершен по таймауту");
+                finishStep();
+            }
+        } catch (Exception e) {
+            if (actionInterrupted || context.isInterrupted()) {
+                CustomLogger.outln("Ход завершен по таймауту");
+                finishStep();
+            }
         }
-        buyMapObjects();  // покупка героев до талого
-        attackNeighbors();  // атакуем соседей
-        moveToOppositeCastle();  // перемещаемся к замку врага
+    }
+
+//    @Override
+//    public void action() {
+//        // действие компьютера
+//        // есть возможность атаковать - атакует
+//        // всё время перемещается к замку
+//        // герой сидит в замке до последнего
+//        LOGGER.log(Level.WARNING, "Начало хода");
+//        if (!isHaveBuilding(new Tavern())) {
+//            buyBuilding(new Tavern());
+//        }
+//        buyMapObjects();  // покупка героев до талого
+//        attackNeighbors();  // атакуем соседей
+//        moveToOppositeCastle();  // перемещаемся к замку врага
+//    }
+
+    public void interruptCurrentAction() {
+        actionInterrupted = true;
+        if (context != null) {
+            context.interrupt();
+        }
+    }
+
+    public long getRemainingTime() {
+        return Math.max(0, Game.TURN_TIME_LIMIT_MS - (System.currentTimeMillis() - turnStartTime));
+    }
+
+    @Override
+    public void applyMovementBonus(int bonus) {
+
+    }
+
+    @Override
+    public void applyEnemyCastleBonus(int bonus) {
+
     }
 
     public void buyMapObjects() {

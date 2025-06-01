@@ -10,9 +10,10 @@ import game.ui.player.manage.ManageArmyState;
 import game.ui.player.MenuContext;
 import game.ui.player.MenuState;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class ControlMovingObjectState implements MenuState {
+public class ControlMovingObjectState implements MenuState, Serializable {
     private final Player player;
     private final MapObject movingObject;
     private MenuContext context;

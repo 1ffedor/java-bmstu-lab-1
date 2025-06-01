@@ -25,7 +25,7 @@ public class ControlBuildingState implements MenuState {
     public void display() {
         player.map.display();
         CustomLogger.outln(String.format(
-                "Основное меню -> Управление зданиями -> %s | Баланс: %s\nВыберите объект для покупки:",
+                "Основное меню -> Управление зданиями -> %s | Баланс: %s\nВыберите действие:",
                 building.getName(), player.getBalanceString()));
         CustomLogger.outln("0: Назад в меню");
         CustomLogger.outln(building.getOptions());

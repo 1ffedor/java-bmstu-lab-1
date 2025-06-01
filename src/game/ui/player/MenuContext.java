@@ -1,5 +1,7 @@
 package game.ui.player;
 
+import game.ui.CustomLogger;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +10,16 @@ public class MenuContext implements Serializable {
     private static final long serialVersionUID = 1L;
     private MenuState currentState;
     private final Map<String, Object> storage = new HashMap<>();
+    private volatile boolean interrupted = false;
 
     // Управление состоянием
     public void setState(MenuState state) {
         this.currentState = state;
+        this.interrupted = false; // Сброс флага при смене состояния
+    }
+
+    public void onInterrupt() {
+        CustomLogger.warn("Время на ход истекло! Автоматическое завершение хода.");
     }
 
     public void run() {
@@ -22,6 +30,26 @@ public class MenuContext implements Serializable {
     }
 
     public void finish() {
+        currentState = null;
+    }
+
+    // Прерывание выполнения
+    public void interrupt() {
+        this.interrupted = true;
+        if (currentState != null) {
+            currentState.onInterrupt();
+        }
+        finish();
+    }
+
+    public boolean isInterrupted() {
+        return interrupted;
+    }
+
+    private void handleInterrupt() {
+        if (currentState != null) {
+            currentState.onInterrupt();
+        }
         currentState = null;
     }
 

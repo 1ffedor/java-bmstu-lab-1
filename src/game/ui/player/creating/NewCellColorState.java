@@ -8,6 +8,7 @@ import game.ui.player.MenuContext;
 import game.ui.player.MenuState;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class NewCellColorState implements MenuState, Serializable {
@@ -30,10 +31,11 @@ public class NewCellColorState implements MenuState, Serializable {
         String color = scanner.nextLine();
         try {
             CellType cellType = CellTypeLoader.loadCellTypesFromXml().stream()
-                    .filter(c -> c.getColor() == color)
+                    .filter(c -> Objects.equals(c.getColor(), color))
                     .findFirst()
                     .orElse(null);
             if (cellType == null) {
+                System.out.println(color);
                 context.addToStorage("cellTypeColor", color);
                 context.setState(new NewCellPenaltyState(context));
                 CustomLogger.outln("");

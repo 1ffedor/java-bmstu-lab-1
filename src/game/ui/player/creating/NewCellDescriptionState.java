@@ -33,18 +33,16 @@ public class NewCellDescriptionState implements MenuState, Serializable {
         String description = scanner.nextLine();
         try {
             context.addToStorage("cellTypeDescription", description);
-
-
             List<CellType> newCellTypeList = null;
             try {
                 newCellTypeList = CellTypeLoader.loadCellTypesFromXml();
                 newCellTypeList.add(new CellType(
                         (char) context.get("сellTypeSymbol"),
-                        0, // (int) context.get("сellTypePenalty"),
-                        (String) context.get("сellTypeColor"),
+                        (int) context.get("сellTypePenalty"),
+                        (String) context.get("cellTypeColor"),
                         (String) context.get("cellTypeDescription"), false));
                 CellTypeSaver.saveCellTypesToXml(newCellTypeList);
-                CustomLogger.info(String.format("Клетка: '%s' успешно создана!", context.get("cellTypeSymbol")));
+                CustomLogger.info(String.format("Клетка: %s успешно создана!", context.get("сellTypeColor")));
                 context.setState(new ManageCellsTypesState(context));
             } catch (Exception e) {
                 CustomLogger.outln("Ошибка при создании нового типа клетки");

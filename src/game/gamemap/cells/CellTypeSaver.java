@@ -30,7 +30,8 @@ public class CellTypeSaver {
             // Добавляем обязательные атрибуты
             cellElement.setAttribute("symbol", String.valueOf(cellType.getSymbol()));
             cellElement.setAttribute("penalty", String.valueOf(cellType.getPenalty()));
-            cellElement.setAttribute("color", cellType.getColor());
+            System.out.println(cellType.getColor());
+            cellElement.setAttribute("color", String.valueOf(cellType.getColor()));
 
             // Добавляем атрибут is_castle (по умолчанию false)
             cellElement.setAttribute("is_castle", String.valueOf(cellType.isCastle()));
@@ -43,7 +44,6 @@ public class CellTypeSaver {
             }
         }
 
-        // Записываем содержимое в XML файл
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");

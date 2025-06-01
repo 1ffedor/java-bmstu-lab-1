@@ -6,8 +6,16 @@
     <CellType color="&#128997;" is_castle="false" penalty="0" symbol="+">
         <description>Дорога</description>
     </CellType>
-    <CellType color="&#127968;" is_castle="true" penalty="0" symbol="$"/>
+    <CellType color="&#127968;" is_castle="true" penalty="0" symbol="$">
+        <description>Замок компьютера</description>
+    </CellType>
     <CellType color="" is_castle="false" penalty="0" symbol="^">
         <description>Новый тип клетки</description>
+    </CellType>
+    <CellType color="&#129482;" is_castle="false" penalty="90" symbol="%">
+        <description>Лёд - замедление</description>
+    </CellType>
+    <CellType color="*" is_castle="false" penalty="0" symbol="_">
+        <description>Зеленая клетка</description>
     </CellType>
 </CellTypes>

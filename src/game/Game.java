@@ -3,7 +3,12 @@ package game;
 import game.gamemap.MainMap;
 import game.players.ComputerPlayer;
 import game.players.MainPlayer;
+import game.players.Npc;
 import game.players.Player;
+import game.shops.Barbershop;
+import game.shops.Cafe;
+import game.shops.Hotel;
+import game.shops.Shop;
 import game.ui.CustomLogger;
 import game.ui.player.MenuContext;
 import utils.LogConfig;
@@ -11,6 +16,11 @@ import utils.ScoreManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,8 +35,10 @@ public class Game implements Serializable {
     public static final int MAP_WIDTH = 10;
     public static final int MAP_HEIGHT = 10;
     private MenuContext context;
+    private ArrayList<Shop> shops = new ArrayList<>();
 
-    private final long TURN_TIME_LIMIT_MS = 60_000; // 1 минута на ход
+    private volatile boolean isTurnActive = false;
+    public static final long TURN_TIME_LIMIT_MS = 3_000; // 1 минута на ход
     private transient Thread turnTimerThread;
 
     public Game(MainMap map, MenuContext context) {
@@ -38,6 +50,8 @@ public class Game implements Serializable {
     private void initGame() {
         LOGGER.log(Level.INFO, "Игра инициализирована");
 //        initMap();
+        initShops();
+        initNpcExecutor();
         initPlayers();
         gameActive = true;
     }
@@ -59,6 +73,41 @@ public class Game implements Serializable {
 
         mainPlayer.initHeroes();
         computerPlayer.initHeroes();
+        context.addToStorage("computerPlayer", computerPlayer);
+    }
+
+    public void initNpcExecutor() {
+        ScheduledExecutorService npcEx = Executors.newScheduledThreadPool(3);
+        for (int i = 0; i < 3; i++) {
+//            TimeUnit.MILLISECONDS.sleep(new Random().nextInt(32));
+            npcEx.scheduleWithFixedDelay(() -> {
+                Npc npc = new Npc(String.format("NPC"), 100, null);
+                try {
+                    if (new Random().nextInt(10) >= 5) {
+                        int shopNum = new Random().nextInt(shops.size());
+                        int choice = new Random().nextInt(3);
+                        npc.processShop(shops.get(shopNum), choice);
+                        TimeUnit.SECONDS.sleep(15);
+                        npc.updateRating(shops.get(shopNum), choice);
+                    }
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }, 3, 25, TimeUnit.SECONDS);
+        }
+    }
+
+    public void initShops() {
+        Hotel hotel = new Hotel();
+        Cafe cafe = new Cafe();
+        Barbershop barbershop = new Barbershop();
+//        Shop barber = new BarberShop();
+        shops.add(cafe);
+        shops.add(hotel);
+        shops.add(barbershop);
+        context.addToStorage("cafe", cafe);
+        context.addToStorage("hotel", hotel);
+        context.addToStorage("barbershop", barbershop);
     }
 
     public void startGame() {
@@ -69,12 +118,59 @@ public class Game implements Serializable {
         }
     }
 
-    public void newRound() {
-        // новый раунд
+    public synchronized void newRound() {
         for (Player player : players) {
-            checkGameStatus();  // проверка на завершение игры
-            CustomLogger.outln(String.format("\nХод игрока: %s. Баланс: %s", player.getName(), player.getBalanceString()));
-            player.startStep();
+            checkGameStatus();
+            CustomLogger.outln(String.format("\nХод игрока: %s. Баланс: %s",
+                    player.getName(), player.getBalanceString()));
+            startPlayerTurn(player);
+        }
+    }
+
+    private synchronized void startPlayerTurn(Player player) {
+        isTurnActive = true;
+        startTurnTimer(player);
+        player.startStep();  // Этот метод блокирует выполнение, пока игрок не завершит ход
+        // stopTurnTimer() теперь вызывается в forceEndTurn или после нормального завершения хода
+    }
+
+    private synchronized void startTurnTimer(Player player) {
+        turnTimerThread = new Thread(() -> {
+            try {
+                Thread.sleep(TURN_TIME_LIMIT_MS);
+                synchronized (this) {
+                    CustomLogger.outln("\nВремя на ход истекло!");
+                    forceEndTurn(player);
+//                    if (isTurnActive) {
+//
+//                    }
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
+        turnTimerThread.start();
+    }
+
+    private void stopTurnTimer() {
+        isTurnActive = false;
+        if (turnTimerThread != null) {
+            turnTimerThread.interrupt();
+        }
+    }
+
+    private synchronized void forceEndTurn(Player player) {
+        if (isTurnActive) {
+            isTurnActive = false;
+            if (player instanceof MainPlayer) {
+                ((MainPlayer)player).interruptCurrentAction();
+            } else {
+                ((ComputerPlayer)player).interruptCurrentAction();
+            }
+            player.finishStep();
+            if (turnTimerThread != null) {
+                turnTimerThread.interrupt();
+            }
         }
     }
 

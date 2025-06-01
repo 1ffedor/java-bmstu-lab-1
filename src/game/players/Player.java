@@ -24,7 +24,7 @@ public abstract class Player implements Serializable {
     protected int balance;
     protected int status;
     protected ArrayList<Building> buildings;  // здания игрока
-    protected MenuContext context;
+    public MenuContext context;
 
     public String name;
     public Castle castle;
@@ -43,6 +43,8 @@ public abstract class Player implements Serializable {
     public String getName() {
         return name;
     }
+
+    public MenuContext getContext() {return context;}
 
     public int getBalance() {
         return balance;
@@ -107,13 +109,25 @@ public abstract class Player implements Serializable {
 
     public void finishStep() {
         // завершить ход
-
-        setMovingObjectsDefaultEnergy();
-        updateBalance(10);
-        if (status == -1) {
-            return;
+        synchronized (this) {
+            System.out.println("Ход заввершен 49949494");
+            setMovingObjectsDefaultEnergy();
+            updateBalance(10);
+            if (status == -1) {
+                return;
+            }
+            status = 2;
         }
-        status = 2;
+    }
+
+    public Castle getCastle() {
+        // замок игрока
+        for (MapObject mapObject : map.getMapObjectsByPlayer(this)) {
+            if (mapObject instanceof Castle) {
+                return (Castle) mapObject;
+            }
+        }
+        return null;
     }
 
     public List<MapObject> getMovingMapObjects() {
@@ -290,4 +304,10 @@ public abstract class Player implements Serializable {
         status = 1;
         postAttack();
     }
+
+    public abstract long getRemainingTime();
+
+    public abstract void applyMovementBonus(int bonus);
+
+    public abstract void applyEnemyCastleBonus(int bonus);
 }
